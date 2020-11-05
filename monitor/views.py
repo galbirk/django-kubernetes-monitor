@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 clusters = [
     {
@@ -10,9 +11,8 @@ clusters = [
 
 ]
 title = 'Monitor k8s'
-def login(request):
-    return render(request, 'monitor/login.html', {'title': title})
 
+@login_required
 def monitor(request):
     context = {
         'clusters' : clusters,
