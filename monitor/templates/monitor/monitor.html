@@ -1,0 +1,18 @@
+{% extends "monitor/base.html" %}
+{% block content %}
+<h1 style="
+height: 100px;
+width: 1100px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+text-align: center;">Monitor Page!</h1>
+    {% for cluster in clusters %}
+    <p>
+        {{ cluster.name }},{{ cluster.id }}<br>
+        {% for node in cluster.nodes %}
+            {{ node.name }},{{ node.state }}
+        {% endfor %}
+    </p>
+    {% endfor %}
+{% endblock content %}
