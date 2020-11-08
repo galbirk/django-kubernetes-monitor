@@ -3,13 +3,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 class UserRegisterForm(UserCreationForm):
-    cluster = forms.CharField(label='Cluster Name', required=False)
+    #role = forms.CharField(label='Role Name', required=True)
+    role = forms.ChoiceField(choices=(
+        ('admin', 'admin'),
+        ('partner','partner'),
+        ('client','client')
+         ),required=True)
     
     class Meta:
        model = User
-       fields = ['username','cluster', 'password1', 'password2'] 
-
-# class LoginForm(forms.Form):
-#     class Meta:
-#        model = User
-#        fields = ['username','password'] 
+       fields = ['username','role', 'password1', 'password2']  

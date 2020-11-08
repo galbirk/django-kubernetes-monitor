@@ -2,24 +2,18 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .forms import UserRegisterForm
-from monitor.models import Users
-from passlib.hash import pbkdf2_sha256
+from users.models import User_Role
 
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
             user_name = form.cleaned_data.get('username')
-            if form.cleaned_data.get('cluster') != '':
-                cluster = form.cleaned_data.get('cluster')
-                user = User.objects.filter(username=user_name).first()
-                users = Users(name=user,cluster=cluster)
-                users.save()
-            else:
-                user = User.objects.filter(username=user_name).first()
-                users = Users(name=user,cluster='None')
-                users.save()
+            role = form.cleaned_data.get('role')
+            user = User.objects.filter(username=user_name).first()
+            user_role = User_Role(user=user,role=role)
+            user_role.save()
             messages.success(request,'Your Account has been created!')
             return redirect('login')
     else:
