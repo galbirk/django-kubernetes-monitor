@@ -82,3 +82,26 @@ body {
   .account-heading {
     font-size: 2.5rem;
   }
+
+  .td-rounded-running {
+    background-clip: padding-box; 
+    border-radius: 5px;
+    background-color: rgb(51, 153, 82);
+    color: white;
+  }
+
+  .td-rounded-provisioning {
+    background-clip: padding-box; 
+    border-radius: 5px;
+    background-color: rgb(197, 164, 56);
+    color: white;
+  }
+
+  .td-rounded-errored {
+    background-clip: padding-box; 
+    border-radius: 5px;
+    background-color: rgb(228, 48, 48);
+    color: white;
+  }
+  
+  

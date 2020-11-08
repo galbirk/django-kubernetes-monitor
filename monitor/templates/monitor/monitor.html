@@ -1,18 +1,43 @@
 {% extends "monitor/base.html" %}
 {% block content %}
-<h1 style="
-height: 100px;
-width: 1100px;
-display: flex;
-flex-direction: column;
-justify-content: center;
-text-align: center;">Monitor Page!</h1>
-    {% for cluster in clusters %}
-    <p>
-        {{ cluster.name }},{{ cluster.id }}<br>
-        {% for node in cluster.nodes %}
-            {{ node.name }},{{ node.state }}
-        {% endfor %}
-    </p>
-    {% endfor %}
+<h1 style="text-align: center;">Clusters</h1>
+<table class="table table-borderless table-responsive">
+    <!-- <colgroup>
+        <col span="1" style="width: 50%;">
+        <col span="1" style="width: 50%;">
+        <col span="1" style="width: 90%;">
+     </colgroup> -->
+<tbody>
+    {% load partition %}
+    {% for cluster_row in clusters|columns:3 %}
+    <tr>
+       {% for cluster in cluster_row %}
+           <td width="25%">
+            <table class="table table-borderless" width="900px" border="0" cellspacing="0" cellpadding="0"> 
+                <tr> 
+                    <td align="center" colspan="3">
+                        <b>Cluster Name: </b>{{ cluster.name }}<br><b>ID: </b>{{ cluster.id }}<br><b>Tags: </b>{{ cluster.tags|join:', ' }}
+                    </td>
+                </tr>
+                {% for node_pool in cluster.node_pools %}
+                {% for nodes_row in node_pool.nodes|columns:2 %}
+                <tr>   
+                     {% for node in nodes_row %}
+                             <td class="td-rounded-{{ node.status.state }}" style="table-layout: fixed; width: 700px;" border="1" cellspacing="0" cellpadding="0">
+                                 <b>Cluster:</b>{{ cluster.name }}<br>
+                                 <b>Node Name: </b>{{ node.name }}.<br>
+                                 <b>Node ID: </b>{{ node.id }}<br>
+                                 <b>State: </b>{{ node.status.state }}<br>
+                             </td>
+                     {% endfor %}
+                     {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+            </td>
+       {% endfor %}
+    </tr>
+   {% endfor %}
+</tbody>
+</table>
 {% endblock content %}
