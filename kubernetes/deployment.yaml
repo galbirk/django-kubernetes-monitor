@@ -1,9 +1,12 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: postgres
+  name: postgres-statefulset
+  labels:
+    app: monitor-k8s
 spec:
-    replicas: 1
+  serviceName: "postgres-svc"
+  replicas: 1
   selector:
     matchLabels:
       app: monitor-k8s
@@ -13,21 +16,20 @@ spec:
         app: monitor-k8s
     spec:
       containers:
-        - name: postgres
-          image: galbirk/django-k8s-monitor-postgres:latest
-          imagePullPolicy: "IfNotPresent"
-          ports:
-            - containerPort: 5432
-          envFrom:
-            - configMapRef:
-                name: postgres-config
-          volumeMounts:
-            - mountPath: /var/lib/postgresql/data
-              name: postgredb
+      - name: postgres
+        image: galbirk/django-k8s-monitor-postgres:latest
+        envFrom:
+        - configMapRef:
+            name: postgres-config
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - name: postgres-pv-volume
+          mountPath: /var/lib/postgresql/data
       volumes:
-        - name: postgredb
-          persistentVolumeClaim:
-            claimName: postgres-pv-claim
+      - name: postgres-pv-volume
+        persistentVolumeClaim:
+          claimName: postgres-pv-claim
 ---
 apiVersion: apps/v1
 kind: Deployment
