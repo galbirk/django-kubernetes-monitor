@@ -16,4 +16,4 @@ script:
   - docker push ${DOCKER_HUB_USER}/${DOCKER_HUB_REPO}
   - docker push ${DOCKER_HUB_USER}/django-k8s-monitor-postgres
   - docker-compose up -d
-  - curl --insecure https://127.0.0.1:8000
+  - curl --insecure http://127.0.0.1:8000
