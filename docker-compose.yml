@@ -5,13 +5,13 @@ services:
     ports:
       - '8000:8000'
     depends_on:
-      - db
+      - postgres
   postgres:
     build: ./db
     volumes:
       - db-data:/var/lib/postgresql/data
     env_file:
-      - .env
+      - db/.env
   pgadmin:
     image: dpage/pgadmin4
     ports: 
@@ -20,7 +20,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
       PGADMIN_DEFAULT_PASSWORD: "admin"
     depends_on:
-      - db
+      - postgres
 
 volumes:
   db-data:
