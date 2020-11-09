@@ -3,3 +3,4 @@ django-crispy-forms
 requests
 gunicorn
 whitenoise
+psycopg2
