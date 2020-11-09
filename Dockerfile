@@ -10,8 +10,12 @@ ENV DJANGO_SUPERUSER_USERNAME=galbirkman \
 
 WORKDIR /app
 
+COPY ./requirements.txt /app/requirements.txt
+
+RUN pip install -r requirements.txt
+
 COPY . .
 
-RUN chmod 755 run_server.sh && pip install -r requirements.txt
+RUN chmod 755 run_server.sh
 
 CMD ["/app/run_server.sh"]
