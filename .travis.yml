@@ -4,10 +4,16 @@ services:
   - docker
 
 before_install:
-- cd app && docker build --no-cache -t ${DOCKER_HUB_USER}/${DOCKER_HUB_REPO} .
-- cd ../db && docker build --no-cache -t ${DOCKER_HUB_USER}/django-k8s-monitor-postgres .
+ - sudo rm /usr/local/bin/docker-compose
+ - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+ - chmod +x docker-compose
+ - sudo mv docker-compose /usr/local/bin
+ - cd app && docker build --no-cache -t ${DOCKER_HUB_USER}/${DOCKER_HUB_REPO} .
+ - cd ../db && docker build --no-cache -t ${DOCKER_HUB_USER}/django-k8s-monitor-postgres .
 
 script:
   - echo "$DOCKER_HUB_PASS" | docker login -u "$DOCKER_HUB_USER" --password-stdin
   - docker push ${DOCKER_HUB_USER}/${DOCKER_HUB_REPO}
   - docker push ${DOCKER_HUB_USER}/django-k8s-monitor-postgres
+  - docker-compose up -d
+  - curl --insecure https://127.0.0.1:8000
