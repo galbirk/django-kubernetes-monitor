@@ -1,0 +1,26 @@
+version: '3'
+services:
+  django:
+    build: ./app
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+  postgres:
+    build: ./db
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    env_file:
+      - .env
+  pgadmin:
+    image: dpage/pgadmin4
+    ports: 
+      - '8080:80'
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    depends_on:
+      - db
+
+volumes:
+  db-data:
