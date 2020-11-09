@@ -27,20 +27,26 @@ def get_role(request):
     role = User_Role.objects.filter(user=user).first()
     return role
 
+def assign_clusters(role,clusters,request):
+    assigned_clusters = []
+    for cluster in clusters:
+        tags = cluster['tags']
+        for tag in tags:
+            if tag == f'{role}:{request.user.username}':
+                assigned_clusters.append(cluster)
+                break
+    return assigned_clusters
+
 title = 'Monitor k8s'
 
 @login_required
 def monitor(request):
-    #role = get_role(request)
+    role = get_role(request)
     clusters = get_clusters()
-    max_columns = 4
-    interval = len(clusters) / max_columns
-    rows = interval + 1
-    if request.user.is_superuser:
-        context = {
+    if  not request.user.is_superuser:
+        clusters = assign_clusters(role,clusters,request)
+    context = {
         'clusters' : clusters,
         'title': title
         }
-    else:
-        rows = rows
     return render(request, 'monitor/monitor.html',context)

@@ -5,7 +5,6 @@ from django.contrib.auth.forms import UserCreationForm
 class UserRegisterForm(UserCreationForm):
     #role = forms.CharField(label='Role Name', required=True)
     role = forms.ChoiceField(choices=(
-        ('admin', 'admin'),
         ('partner','partner'),
         ('client','client')
          ),required=True)
