@@ -1,0 +1,40 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: django-svc
+#   labels:
+#     app: monitor-k8s
+# spec:
+#   type: ClusterIP
+#   selector:
+#     app: monitor-k8s
+#   ports:
+#     - port: 8000
+#       protocol: TCP
+#       targetPort: 8000
+apiVersion: v1
+kind: Service
+metadata:
+  name: django-svc
+spec:
+  selector:
+    app: monitor-k8s
+  ports:
+    - port: 80
+      targetPort: 8000
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-svc
+  labels:
+    app: monitor-k8s
+spec:
+  type: ClusterIP
+  selector:
+    app: monitor-k8s
+  ports:
+    - port: 5432
+      protocol: TCP
+      targetPort: 5432

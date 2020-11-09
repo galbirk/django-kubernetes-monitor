@@ -7,7 +7,7 @@ spec:
   template:
     metadata:
       labels:
-        app: postgres
+        app: monitor-k8s
     spec:
       containers:
         - name: postgres
@@ -31,16 +31,16 @@ kind: Deployment
 metadata:
   name: django
   labels:
-    app: django
+    app: monitor-k8s
 spec:
     replicas: 2
   selector:
     matchLabels:
-      app: django
+      app: monitor-k8s
   template:
     metadata:
       labels:
-        app: django
+        app: monitor-k8s
     spec:
       containers:
         - image: galbirk/django-k8s-monitor:latest
