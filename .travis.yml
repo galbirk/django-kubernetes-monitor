@@ -12,6 +12,4 @@ script:
   - docker push ${DOCKER_HUB_USER}/${DOCKER_HUB_REPO}
   - docker push ${DOCKER_HUB_USER}/django-k8s-monitor-postgres
   - docker-compose up -d
-  
-after_script:
   - docker-compose logs django | grep "Listening at: http://0.0.0.0:8000"
