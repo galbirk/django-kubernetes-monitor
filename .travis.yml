@@ -5,7 +5,7 @@ services:
 
 before_install:
 - cd app && docker build --no-cache -t ${DOCKER_HUB_USER}/${DOCKER_HUB_REPO} .
-- cd db && docker build --no-cache -t ${DOCKER_HUB_USER}/django-k8s-monitor-postgres .
+- cd ../db && docker build --no-cache -t ${DOCKER_HUB_USER}/django-k8s-monitor-postgres .
 
 script:
   - echo "$DOCKER_HUB_PASS" | docker login -u "$DOCKER_HUB_USER" --password-stdin
