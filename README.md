@@ -108,6 +108,7 @@ kubectl apply -f django/
 kubectl get svc | grep django-svc | awk '{print $4}'
 ```
 app url: http://[lb-ip/hostname]<br>
+**NOTICE: Before you are deploying the app in k8s, you need to configure your app with the environmet variables below!**
 #### Environment Variables for django
 The environment varibles are in [django-configmap.yaml](kubernetes/django/django-configmap.yaml) and in [django-secrets](kubernetes/django/django-secrets)
 * **DJANGO_ALLOWED_HOSTS** --> django Allowed Hosts variable in [settings.py](app/monitor_k8s/settings.py)
