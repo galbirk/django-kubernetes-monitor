@@ -1,7 +1,9 @@
 version: '3'
 services:
   django:
-    build: ./app
+    build: 
+      context: ./app
+      dockerfile: ./app/Dockerfile.test
     ports:
       - '8000:8000'
     depends_on:
