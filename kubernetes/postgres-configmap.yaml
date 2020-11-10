@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: postgres-config
   labels:
-    app: monitor-k8s
+    app: postgres
 data:
   POSTGRES_DB: monitor
   POSTGRES_USER: django
