@@ -17,7 +17,7 @@ spec:
       containers:
         - image: galbirk/django-k8s-monitor:latest
           name: django
-          imagePullPolicy: always
+          imagePullPolicy: Always
           envFrom:
           - secretRef:
               name: django-secrets
