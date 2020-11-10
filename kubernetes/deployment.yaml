@@ -1,11 +1,11 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
-  name: postgres-statefulset
+  name: postgres
   labels:
     app: monitor-k8s
 spec:
-  serviceName: "postgres-svc"
+  #serviceName: "postgres"
   replicas: 1
   selector:
     matchLabels:
