@@ -4,6 +4,7 @@ from users.models import User_Role
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import requests
+import os
 
 clusters = [
     {
@@ -14,7 +15,7 @@ clusters = [
 
 ]
 def get_clusters():
-    API_KEY = '22c29be96ab2f6a3d43d714f6329ae1151eb92781fd472a83fa248b82fbeb51b'
+    API_KEY = os.getenv('API_KEY')
     url = 'https://api.digitalocean.com/v2/kubernetes/clusters'
     headers = {'Content-type': 'application/json' ,'Authorization': f'Bearer {API_KEY}'}
     r = requests.get(url, headers=headers)

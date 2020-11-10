@@ -4,5 +4,5 @@ metadata:
   name: django-config
 data:
   DJANGO_ALLOWED_HOSTS: "*"
-  DJANGO_DEBUG: "FALSE"
+  DJANGO_DEBUG: 'True'
   DATABASE_ENGINE: "postgresql_psycopg2"
