@@ -3,17 +3,17 @@ kind: Deployment
 metadata:
   name: postgres
   labels:
-    app: monitor-k8s
+    app: postgres
 spec:
   #serviceName: "postgres"
   replicas: 1
   selector:
     matchLabels:
-      app: monitor-k8s
+      app: postgres
   template:
     metadata:
       labels:
-        app: monitor-k8s
+        app: postgres
     spec:
       containers:
       - name: postgres

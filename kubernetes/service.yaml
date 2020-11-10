@@ -29,11 +29,11 @@ kind: Service
 metadata:
   name: postgres
   labels:
-    app: monitor-k8s
+    app: postgres
 spec:
   type: ClusterIP
   selector:
-    app: monitor-k8s
+    app: postgres
   ports:
     - port: 5432
       protocol: TCP
