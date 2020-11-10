@@ -114,12 +114,23 @@ The environment variables are in [postgres-configmap.yaml](kubernetes/postgres/p
 ## How to use the app
 ### Users and Roles
 The app has registeration and login/logout systems, there are **3 roles**:
-* **superuser** --> the admins of the website, can reach to the administartion page with http://[ip/hostname]:8000/admin, they can see all the clusters.
+* **superuser** --> the admins of the website, can reach to the administartion page with , http://[ip/hostname]:8000/admin. They can see all the clusters.
 * **partner** --> they can see all the clusters that tagged with partner:<username> tag.
 * **client** --> they can see all the clusters that tagged with client:<username> tag.
+  
 ### Tags
 To let the app monitor your clusters, for many users with different roles you will have to tag the clusters.<br>
 **client role tag:**<br>
 client:<client_username><br>
 **partnet role tag:**<br>
 partner:<partner_username>
+## Docker Hub Images
+### The images are published in Docker Hub:
+* [django image](https://hub.docker.com/repository/docker/galbirk/django-k8s-monitor)
+* [postgres image](https://hub.docker.com/repository/docker/galbirk/django-k8s-monitor-postgres)
+
+## Author Information
+
+<b>Gal Birkman, DevOps Engineer.</b><br>
+<b>email:</b> galbirkman@gmail.com<br>
+<b>GitHub:</b> https://github.com/galbirk
