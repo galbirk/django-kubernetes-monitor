@@ -2,6 +2,32 @@
 ![python-version](https://img.shields.io/badge/python-v3.9-blue) [![Build Status](https://travis-ci.com/galbirk/django-kubernetes-monitor.svg?token=cAJ7spzZZ8Xpa3xfCSSh&branch=main)](https://travis-ci.com/galbirk/django-kubernetes-monitor)<br>
 Python Django web server to monitor digital ocean k8s clusters.<br>
 ## ![k8s](app/monitor/static/monitor/k8s.ico)
+## Table of Contents
+- [About](#About)
+  * [Frontend - Django Webserver](#Frontend---Django-Webserver)
+  * [Backend - Postgresql Database](#Backend---Postgresql Database)
+  * [Deployments options](#Deployments-options)
+- [How to Deploy?](#How-to-Deploy?)
+  * [Deploy With docker-compose](#Deploy-With-docker-compose)
+    - [Install docker and docker-compose](#Install-docker-and-docker-compose)
+    - [install docker and docker-compose on linux](#install-docker-and-docker-compose-on-linux)
+    - [Clone git repository and deploy the compose file](#Clone-git-repository-and-deploy-the-compose-file)
+    - [Environment Variables for django service](#Environment-Variables-for-django-service)
+    - [Environment Variables for postgres service](#Environment-Variables-for-postgres-service)
+   * [Deploy With Kubernetes](#Deploy-With-Kubernetes)
+      - [Clone git repository](#Clone-git-repository)
+      - [Deploy postgres](#Deploy-postgres)
+      - [Deploy django](#Deploy-django)
+      - [Environment Variables for django](#Environment-Variables-for-django)
+      - [Environment Variables for postgres](#Environment-Variables-for-postgres)
+      - [Kubernetes Resources](#Kubernetes-Resources)
+        - [Django](#Django)
+        - [Postgres](#Postgres)
+- [How to use the app?](#How-to-use-the-app?)
+  * [Users and Roles](#Users-and-Roles)
+  * [Tags](#Tags)
+- [Docker Hub Images](#Docker-Hub-Images)
+- [Author Information](#Author-Information)
 ## About
 ### Frontend - Django Webserver
 The web server contains user registartion and login logout system and a UI that montiors the k8s clusters from your Digital Ocean account.
@@ -111,7 +137,7 @@ The environment variables are in [postgres-configmap.yaml](kubernetes/postgres/p
 * **postgres-configmap.yaml** --> configmap for postgres environment variables
 * **postgres-deployment.yaml** --> deployment for postgres
 * **postgres-service.yaml** --> ClusterIP service for postgres
-## How to use the app
+## How to use the app?
 ### Users and Roles
 The app has registeration and login/logout systems, there are **3 roles**:
 * **superuser** --> the admins of the website, can reach to the administartion page with , http://[ip/hostname]:8000/admin. They can see all the clusters.
