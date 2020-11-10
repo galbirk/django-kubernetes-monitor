@@ -3,7 +3,7 @@ services:
   django:
     build: 
       context: ./app
-      dockerfile: ./app/Dockerfile.test
+      dockerfile: Dockerfile.test
     ports:
       - '8000:8000'
     depends_on:
