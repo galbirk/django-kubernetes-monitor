@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django
+  labels:
+    app: monitor-k8s
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: monitor-k8s
+  template:
+    metadata:
+      labels:
+        app: monitor-k8s
+    spec:
+      containers:
+        - image: galbirk/django-k8s-monitor:latest
+          name: django
+          imagePullPolicy: IfNotPresent
+          envFrom:
+          - secretRef:
+              name: django-secrets
+          - configMapRef:
+              name: django-config
+          ports:
+            - containerPort: 8000
+              name: gunicorn
