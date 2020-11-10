@@ -5,7 +5,7 @@ Python Django web server to monitor digital ocean k8s clusters.<br>
 ## Table of Contents
 - [About](#About)
   * [Frontend - Django Webserver](#Frontend---Django-Webserver)
-  * [Backend - Postgresql Database](#Backend---Postgresql Database)
+  * [Backend - Postgresql Database](#Backend---Postgresql-Database)
   * [Deployments options](#Deployments-options)
 - [How to Deploy?](#How-to-Deploy?)
   * [Deploy With docker-compose](#Deploy-With-docker-compose)
