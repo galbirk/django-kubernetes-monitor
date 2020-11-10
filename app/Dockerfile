@@ -16,6 +16,7 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-RUN chmod 755 run_server.sh
+RUN chmod 755 run_server.sh && \
+    chmod 755 migrate.sh
 
 CMD ["/app/run_server.sh"]
