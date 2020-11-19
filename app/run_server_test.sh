@@ -5,6 +5,6 @@ then
     python manage.py collectstatic --noinput
     python manage.py makemigrations
     python manage.py migrate
-    python manage.py createsuperuser --no-input
+    python manage.py createsuperuser --noinput
 fi
 gunicorn --bind :8000 --workers 3 monitor_k8s.wsgi
